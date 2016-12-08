@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
-  
+
   def new
   	render json: {
                     success: false,

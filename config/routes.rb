@@ -6,10 +6,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-  	authenticated :user do
-	  	post 'users/log_in' => 'users#log_in'
-	    resources :users
-		end
+	  post 'users/log_in' => 'users#log_in'
+	  resources :users
 
   end
 

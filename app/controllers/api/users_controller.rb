@@ -1,8 +1,8 @@
 class Api::UsersController < ApplicationController
   before_action :set_user, only: [:destroy, :show]
   before_action :set_all_user, only: [:index]
-  skip_before_filter :authenticate_user!, only: [:log_in, :create]
-  #before_action :authenticate_user!, except: [:log_in, :create]
+  #skip_before_filter :authenticate_user!, only: [:log_in, :create]
+  before_action :authenticate_user!, except: [:log_in, :create, :index]
   respond_to :json
 
   def show
@@ -49,6 +49,9 @@ class Api::UsersController < ApplicationController
   end
 
   def log_in
+    puts "AAAAAAAAAAAAAAAAAA"
+    puts params
+    puts params[:user]
     @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) 
